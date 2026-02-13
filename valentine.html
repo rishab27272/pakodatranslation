@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Valentine's Day 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #c0152a;
+      --pink: #f472a8;
+      --light-pink: #ffd6e7;
+      --white: #fff8f9;
+      --rose: #e8385a;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 40%, #ffd6e7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lato', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Floating hearts background */
+    .hearts-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart-float {
+      position: absolute;
+      font-size: 1.4rem;
+      animation: floatUp linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) rotate(-10deg); opacity: 0; }
+      10%  { opacity: 0.5; }
+      90%  { opacity: 0.3; }
+      100% { transform: translateY(-10vh) rotate(15deg); opacity: 0; }
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: white;
+      border-radius: 28px;
+      padding: 50px 48px 44px;
+      max-width: 440px;
+      width: 90%;
+      text-align: center;
+      box-shadow:
+        0 8px 40px rgba(192, 21, 42, 0.15),
+        0 2px 10px rgba(244, 114, 168, 0.2),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+      animation: cardIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      border: 1.5px solid rgba(244, 114, 168, 0.3);
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(40px) scale(0.92); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Big heart icon */
+    .main-heart {
+      font-size: 3.8rem;
+      display: block;
+      animation: heartbeat 1.4s ease-in-out infinite;
+      margin-bottom: 8px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14%       { transform: scale(1.18); }
+      28%       { transform: scale(1); }
+      42%       { transform: scale(1.12); }
+      56%       { transform: scale(1); }
+    }
+
+    /* Date tag */
+    .date-tag {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--red), var(--rose));
+      color: white;
+      font-size: 0.72rem;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 22px;
+    }
+
+    /* Name */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-style: italic;
+      color: var(--red);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    /* Message */
+    .message {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: #8b3a52;
+      line-height: 1.7;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--pink), var(--red));
+      margin: 20px auto 24px;
+      border-radius: 2px;
+    }
+
+    /* Question */
+    .question {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: #3a1a22;
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+
+    /* Buttons */
+    .btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, var(--red), var(--rose), var(--pink));
+      color: white;
+      border: none;
+      padding: 14px 38px;
+      border-radius: 50px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(192,21,42,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-yes::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.15);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.07) translateY(-2px);
+      box-shadow: 0 10px 28px rgba(192,21,42,0.45);
+    }
+
+    .btn-yes:hover::after { opacity: 1; }
+
+    .btn-no {
+      background: #f5e0e5;
+      color: #c090a0;
+      border: 1.5px solid #e8c0cc;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      cursor: not-allowed;
+      transition: transform 0.15s;
+      position: relative;
+    }
+
+    /* No button runs away */
+    .btn-no:hover {
+      /* runaway handled by JS */
+    }
+
+    /* Success screen */
+    .success {
+      display: none;
+      animation: fadeIn 0.6s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .success .big-emoji {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 14px;
+      animation: spin 0.8s ease both;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(-30deg) scale(0); }
+      to   { transform: rotate(0deg) scale(1); }
+    }
+
+    .success h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--red);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .success p {
+      color: #8b3a52;
+      font-size: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    /* Tooltip on no */
+    .tooltip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      color: white;
+      font-size: 0.72rem;
+      padding: 5px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      font-family: 'Lato', sans-serif;
+      font-style: normal;
+    }
+
+    .btn-no:hover .tooltip { opacity: 1; }
+
+    /* Inside jokes strip */
+    .jokes-strip {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(244, 114, 168, 0.4);
+    }
+
+    .jokes-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d4849e;
+      margin-bottom: 12px;
+    }
+
+    .jokes-row {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .joke-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: default;
+      transition: transform 0.2s;
+    }
+
+    .joke-item:hover {
+      transform: scale(1.25) rotate(-5deg);
+    }
+
+    .joke-emoji {
+      font-size: 1.8rem;
+      animation: wobble 3s ease-in-out infinite;
+    }
+
+    .joke-item:nth-child(2) .joke-emoji { animation-delay: 0.4s; }
+    .joke-item:nth-child(3) .joke-emoji { animation-delay: 0.8s; }
+    .joke-item:nth-child(4) .joke-emoji { animation-delay: 1.2s; }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(0deg); }
+      25%       { transform: rotate(-8deg); }
+      75%       { transform: rotate(8deg); }
+    }
+
+    .joke-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      color: #c090a0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <div class="card" id="mainCard">
+    <!-- Main content -->
+    <div id="mainContent">
+      <span class="main-heart">💗</span>
+      <div class="date-tag">Valentine's Day 2026</div>
+      <h1>Janvi Kapur Samtani</h1>
+      <p class="message">"Hi my jenzo, I love you so much my beautiful baby wife. How do you feel being teased to the max and getting asked out on feb 13? I cant not ragebait/bully you in any situation, this is my love for my baby munchkin on valentines."</p>
+      <div class="divider"></div>
+      <p class="question">Will you be my Valentine, mi diosa hermosa? 🌹</p>
+      <div class="btns">
+        <button class="btn-yes" onclick="sayYes()">Yes! 💕</button>
+        <button class="btn-no" id="noBtn" onmouseover="runAway(this)" ontouchstart="runAway(this)">
+          No
+          <span class="tooltip">Not an option! 😈</span>
+        </button>
+      </div>
+
+      <div class="jokes-strip">
+        <p class="jokes-label">just our little things 🤍</p>
+        <div class="jokes-row">
+          <div class="joke-item">
+            <span class="joke-emoji">🫐</span>
+            <span class="joke-label">blueberry<br>cheesecake</span>
+          </div>
+          <div class="joke-item">
+            <span class="joke-emoji">🍍</span>
+            <span class="joke-label">pineapple</span>
+          </div>
+          <div class="joke-item">
+            <span class="joke-emoji">🥝</span>
+            <span class="joke-label">kiwi</span>
+          </div>
+          <div class="joke-item">
+            <span class="joke-emoji">🍟</span>
+            <span class="joke-label">pakoda</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success screen -->
+    <div class="success" id="successScreen">
+      <span class="big-emoji">🥰</span>
+      <h2>Yay! She said yes!</h2>
+      <p>Happy Valentine's Day, my love 💕<br>You make every day magical.</p>
+    </div>
+  </div>
+
+  <script>
+    // Generate floating hearts
+    const heartsBg = document.getElementById('heartsBg');
+    const emojis = ['💗','💕','❤️','🌹','💖','💘','🩷'];
+    for (let i = 0; i < 22; i++) {
+      const h = document.createElement('span');
+      h.classList.add('heart-float');
+      h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+      h.style.animationDuration = (6 + Math.random() * 10) + 's';
+      h.style.animationDelay = (Math.random() * 10) + 's';
+      heartsBg.appendChild(h);
+    }
+
+    // Run away button
+    function runAway(btn) {
+      const card = document.getElementById('mainCard');
+      const cardRect = card.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+
+      const maxX = cardRect.width - btnRect.width - 20;
+      const maxY = cardRect.height - btnRect.height - 20;
+
+      const randX = Math.floor(Math.random() * maxX) - maxX / 2;
+      const randY = Math.floor(Math.random() * maxY) - maxY / 2;
+
+      btn.style.transform = `translate(${randX}px, ${randY}px)`;
+      btn.style.transition = 'transform 0.3s ease';
+    }
+
+    // Yes click
+    function sayYes() {
+      document.getElementById('mainContent').style.display = 'none';
+      const success = document.getElementById('successScreen');
+      success.style.display = 'block';
+
+      // extra hearts burst
+      for (let i = 0; i < 15; i++) {
+        const h = document.createElement('span');
+        h.classList.add('heart-float');
+        h.textContent = ['💗','💕','💖','🥰','❤️'][Math.floor(Math.random() * 5)];
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+        h.style.animationDuration = (3 + Math.random() * 5) + 's';
+        h.style.animationDelay = '0s';
+        heartsBg.appendChild(h);
+      }
+    }
+  </script>
+</body>
+</html>
